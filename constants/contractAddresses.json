@@ -1,1 +1,42 @@
-{"4":[],"31337":["0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"]}
+{
+    "80001": {
+        "vaultAddress": "0x0",
+        "commodities": [
+            {
+                "symbol": "XAU",
+                "name": "gold",
+                "address": "0x1"
+            },
+            {
+                "symbol": "BRENTOIL",
+                "name": "brent-oil",
+                "address": "0x2"
+            },
+            {
+                "symbol": "COAL",
+                "name": "coal",
+                "address": "0x3"
+            }
+        ]
+    },
+    "31337": {
+        "vaultAddress": "0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0",
+        "commodities": [
+            {
+                "symbol": "XAU",
+                "name": "gold",
+                "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
+            },
+            {
+                "symbol": "BRENTOIL",
+                "name": "brent-oil",
+                "address": "0x610178dA211FEF7D417bC0e6FeD39F05609AD788"
+            },
+            {
+                "symbol": "COAL",
+                "name": "coal",
+                "address": "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e"
+            }
+        ]
+    }
+}

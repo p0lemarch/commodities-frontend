@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.table {
+    border: 1px solid #333;
+    background-color: #999;
+}
+td {
+    border: 1px solid #333;
+}
+
+.br {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    width: 100%;
+}
+
+.breakwithoutaline {
+    padding: 10px;
+    width: 100%;
+}
+
+.button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 0px 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

@@ -1,16 +1,17 @@
-import { contractAddresses, abi } from "../constants"
+import { contractAddresses } from "../constants"
 // dont export from moralis when using react
 import { useMoralis, useWeb3Contract } from "react-moralis"
 import { useEffect, useState } from "react"
 import { useNotification } from "web3uikit"
 import { ethers } from "ethers"
 
-export default function LotteryEntrance() {
+export default function Positions() {
     const { Moralis, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
     // These get re-rendered every time due to our connect button!
     const chainId = parseInt(chainIdHex)
     // console.log(`ChainId is ${chainId}`)
-    const raffleAddress = chainId in contractAddresses ? contractAddresses[chainId][0] : null
+    const vaultAddress =
+        chainId in contractAddresses ? contractAddresses[chainId]["vaultAddress"] : null
 
     // State hooks
     // https://stackoverflow.com/questions/58252454/react-hooks-using-usestate-vs-just-variables
@@ -27,7 +28,7 @@ export default function LotteryEntrance() {
         isFetching,
     } = useWeb3Contract({
         abi: abi,
-        contractAddress: raffleAddress,
+        contractAddress: vaultAddress,
         functionName: "enterRaffle",
         msgValue: entranceFee,
         params: {},
@@ -37,21 +38,21 @@ export default function LotteryEntrance() {
 
     const { runContractFunction: getEntranceFee } = useWeb3Contract({
         abi: abi,
-        contractAddress: raffleAddress, // specify the networkId
+        contractAddress: vaultAddress, // specify the networkId
         functionName: "getEntranceFee",
         params: {},
     })
 
     const { runContractFunction: getPlayersNumber } = useWeb3Contract({
         abi: abi,
-        contractAddress: raffleAddress,
+        contractAddress: vaultAddress,
         functionName: "getNumberOfPlayers",
         params: {},
     })
 
     const { runContractFunction: getRecentWinner } = useWeb3Contract({
         abi: abi,
-        contractAddress: raffleAddress,
+        contractAddress: vaultAddress,
         functionName: "getRecentWinner",
         params: {},
     })
@@ -76,18 +77,6 @@ export default function LotteryEntrance() {
             updateUIValues()
         }
     }, [isWeb3Enabled])
-    // no list means it'll update everytime anything changes or happens
-    // empty list means it'll run once after the initial rendering
-    // and dependencies mean it'll run whenever those things in the list change
-
-    // An example filter for listening for events, we will learn more on this next Front end lesson
-    // const filter = {
-    //     address: raffleAddress,
-    //     topics: [
-    //         // the name of the event, parnetheses containing the data type of each event, no spaces
-    //         utils.id("RaffleEnter(address)"),
-    //     ],
-    // }
 
     const handleNewNotification = () => {
         dispatch({
@@ -111,8 +100,8 @@ export default function LotteryEntrance() {
 
     return (
         <div className="p-5">
-            <h1 className="py-4 px-4 font-bold text-3xl">Lottery</h1>
-            {raffleAddress ? (
+            <h1 className="py-4 px-4 font-bold text-3xl">Positions</h1>
+            {vaultAddress ? (
                 <>
                     <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-auto"
